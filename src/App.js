@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import Tab from './components/Tab';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    tabHeaders: ['Tab 1', 'Tab 2', ' Tab 3', ' Tab 4']
+  };
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Tab App</h1>
+        <Tab tabHeaders={this.state.tabHeaders}/>
       </div>
     );
   }
