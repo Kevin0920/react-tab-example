@@ -15,7 +15,7 @@ const Tabs = (props) => {
                                 key={index}
                                 data={tab}
                                 isActive={props.activeTab === tab}
-                                handleClick={props.changeTab.bind(this, tab)}
+                                handleClick={() => props.changeTab(tab)}
                             />
                        )
                    })
