@@ -1,42 +1,72 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 
-import Tab from './components/Tab';
+import Tabs from './components/Tabs';
+import Panel from './components/Panel';
+
 import './App.css';
+
+const tabData = [
+     {
+       id: 't1',
+       title: 'Meat',
+       isActive: true
+     }, {
+       id: 't2',
+       title: 'Vegeterble',
+       isActive: false
+     }, {
+       id: 't3',
+       title: 'Profile',
+       isActive: false
+     }
+];
+
 
 class App extends Component {
 
   state = {
-    tabHeaders: [
-      { id:'t1', 
-        isActive: true,
-        title: <strong><span role="img">🍗</span> Meat</strong>,
-        panel: <div><p>Bacon ipsum dolor amet pork prosciutto tail ground round cow pancetta ham beef.  Brisket cupim shoulder drumstick turkey sausage cow pork beef pig venison boudin.  Ham hock bacon hamburger alcatra boudin shank shankle porchetta short ribs.  Jowl shank shoulder, pork belly tail ham hock ribeye fatback sirloin doner beef swine ground round meatball hamburger.</p></div>
+    tabData: [
+      {    
+        id:'t1', 
+        title: 'Meat',
+        isActive: true
       },
       {
         id: 't2',
-        isActive: false,
-        title: <strong><span role="img">😴</span> Vegeterble</strong>,
-        panel: <div><p>Et ullamco enim consectetur eiusmod sit amet magna anim non sint labore minim dolore ad.</p></div>
+        title: 'Vegeterble',
+        isActive: false
       },
       {
         id: 't3',
-        isActive: false,
-        title: <strong><span role="img">😁</span> Profile</strong>,
-        panel: <div><p>Et ullamco enim consectetur eiusmod sit amet magna anim non sint labore minim dolore ad.</p></div> 
+        title: 'Profile',
+        isActive: false
       }
-    ]
+    ],
+    activeTab: tabData[0]
   };
 
+
+  handleClick = (tab) => {
+    this.setState({
+      activeTab: tab
+    });
+  }
 
   render() {
     return (
       <div className="App">
         <h1>Tab App</h1>
-        <Tab 
-          tabHeaders={this.state.tabHeaders}
-          onChange={tabHeaders => this.setState({tabHeaders})}
+        <div>
+          <Tabs
+            data={this.state.tabData}
+            activeTab={this.state.activeTab}
+            changeTab={this.handleClick}
           />
+          <Panel 
+            activeTab={this.state.activeTab}
+          />
+        </div>
       </div>
     );
   }
